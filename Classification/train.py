@@ -58,11 +58,11 @@ class ConvNN(nn.Module):
     return x
 
 # Создание экземпляра модели ConvNN и определение функции потерь CrossEntropyLoss
-model = ConvNN().cuda()
-criterion = nn.CrossEntropyLoss().cuda()
+model = ConvNN()#.cuda()
+criterion = nn.CrossEntropyLoss()#.cuda()
 
 # Загрузка данных и преобразование
-data_path = "/Data/simpsons_dataset"
+data_path = "./Data/simpsons_dataset"
 trans = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor()])
 dataset = datasets.ImageFolder(data_path, transform=trans)
 
@@ -88,8 +88,8 @@ for epoch in range(num_epochs):
   FP = 0
   for i, data in enumerate(train_loader,0):
     inputs, labels = data
-    inputs=inputs.cuda()
-    labels=labels.cuda()
+    inputs=inputs#.cuda()
+    labels=labels#.cuda()
     optimizer.zero_grad()
     outputs = model(inputs)
     loss = criterion(outputs, labels)
@@ -108,8 +108,8 @@ for epoch in range(num_epochs):
   with torch.no_grad():
     for i, data in enumerate(val_loader, 0):
       inputs, labels = data
-      inputs = inputs.cuda()
-      labels = labels.cuda()
+      inputs = inputs#.cuda()
+      labels = labels#.cuda()
       outputs = model(inputs)
       loss = criterion(outputs, labels)
       val_loss += loss.item()
