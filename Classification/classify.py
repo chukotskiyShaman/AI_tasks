@@ -25,7 +25,7 @@ class ConvNN(nn.Module):
     x = self.fc2(x)
     return x
 
-data_path = "./Data/simpsons_dataset"
+data_path = input("Введите путь к папке с датасетом: ")#"./Data/simpsons_dataset"
 trans = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor()])
 dataset = datasets.ImageFolder(data_path, transform=trans)
 
